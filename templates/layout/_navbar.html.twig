@@ -13,29 +13,53 @@
           <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Moments</a>
+          <a class="nav-link" href="{{ path('app_moment_index') }}">Moments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_player_index') }}">Joueurs</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Equipes
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Clubs</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_team_index') }}">Clubs</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Pays</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_nation_index') }}">Pays</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Compétitions
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{{ path('app_competition_index') }}">Nationales</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ path('app_continentale_index') }}">Continentales</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ path('app_internationale_index') }}">Internationales</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Joueurs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Stades</a>
+          <a class="nav-link" href="{{ path('app_stadium_index') }}">Stades</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      {% if app.user is defined %}
+				<div class="header_logout">
+        <input type="hidden" name="csrf_token_id" value="/">
+					<a href="{{ path('app_logout') }}" class="nav-link">
+						<i class='bi bi-box-arrow-left'></i>
+						<span class="nav_name">Déconnexion</span>
+					</a>
+				</div>
+      {% else %}
+        <div class="header_login">        
+          <a href="{{path('app_login')}}" class="nav-link">
+            <i class='bi bi-box-arrow-in-right'></i>
+            <span class="nav_name">Connexion</span>
+          </a>
+        </div>
+      {% endif %}
     </div>
   </div>
 </nav>

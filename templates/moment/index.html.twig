@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les moments{% endblock %}
+
+{% block body %}
+    <h1>Tous les moments</h1>
+<div class="moments"> 
+{% for moment in moments %}
+  
+<div class="card" style="width: 18rem; border:#333 solid 3px; border-radius: 10px;">
+  <img src="{{ moment.photo }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ moment.title }}</h5>
+    <p class="card-text">{{ moment.description }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Date du moment : {{ moment.date ? moment.date|date('Y-m-d') : '' }}</li>
+    <li class="list-group-item">Lien vers la vidéo : <a href="{{ moment.link }}">{{ moment.title }}</a></li>
+    <li class="list-group-item">Note des internautes : {{ moment.rating }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="{{ path('app_moment_show', {'id': moment.id}) }}" class="card-link">Voir</a>
+    <a href="{{ path('app_moment_edit', {'id': moment.id}) }}" class="card-link">Modifier</a>
+  </div>
+</div>
+
+{% endfor %}
+</div>
+<a href="{{ path('app_moment_new') }}">Ajouter un nouveau moment</a>
+
+{% endblock %}

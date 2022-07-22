@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compétitions{% endblock %}
+
+{% block body %}
+    <h1>Toutes les compétitions nationales</h1>
+
+<div class="moments"> 
+
+{% for competition in competitions %}
+
+{% if competition.type == 'Nationale' %}
+  
+<div class="card" style="width: 18rem; border:#333 solid 3px; border-radius: 10px;">
+  <div class="card-body">
+    <h5 class="card-title">{{ competition.name }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Type : {{competition.type }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="{{ path('app_competition_show', {'id': competition.id}) }}" class="card-link">Voir</a>
+    <a href="{{ path('app_competition_edit', {'id': competition.id}) }}" class="card-link">Modifier</a>
+  </div>
+</div>
+
+{% endif %}
+
+{% endfor %}
+
+</div>
+<a href="{{ path('app_competition_new') }}">Ajouter une nouvelle compétition</a>
+{% endblock %}

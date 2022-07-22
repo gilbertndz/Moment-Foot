@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clubs{% endblock %}
+
+{% block body %}
+    <h1>Tous les clubs</h1>
+
+<div class="moments"> 
+
+{% for team in teams %}
+
+{% if team.type == 'Club' %}
+  
+<div class="card" style="width: 18rem; border:#333 solid 3px; border-radius: 10px;">
+  <img src="{{ team.logo }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ team.name }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Ville : {{ team.city }}</li>
+    <li class="list-group-item">Pays : {{ team.country }}</li>
+    <li class="list-group-item">Type : {{ team.type }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="{{ path('app_team_show', {'id': team.id}) }}" class="card-link">Voir</a>
+    <a href="{{ path('app_team_edit', {'id': team.id}) }}" class="card-link">Modifier</a>
+  </div>
+</div>
+
+{% endif %}
+
+{% endfor %}
+
+</div>
+<a href="{{ path('app_team_new') }}">Ajouter un nouveau club</a>
+{% endblock %}

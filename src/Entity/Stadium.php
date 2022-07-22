@@ -30,6 +30,9 @@ class Stadium
     #[ORM\OneToMany(mappedBy: 'stadium', targetEntity: Moment::class)]
     private Collection $moments;
 
+    #[ORM\Column(length: 355, nullable: true)]
+    private ?string $photo = null;
+
     public function __construct()
     {
         $this->moments = new ArrayCollection();
@@ -114,6 +117,18 @@ class Stadium
                 $moment->setStadium(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
 
         return $this;
     }

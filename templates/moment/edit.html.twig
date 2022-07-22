@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le Moment{% endblock %}
+
+{% block body %}
+    <h1>Modifier le Moment</h1>
+
+    {{ include('moment/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_moment_index') }}">Retour aux moments</a>
+
+    {{ include('moment/_delete_form.html.twig') }}
+{% endblock %}

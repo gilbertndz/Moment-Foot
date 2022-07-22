@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Moment{% endblock %}
+
+{% block body %}
+
+    <h1>Ajouter un nouveau Moment</h1>
+
+    {{ include('moment/_form.html.twig') }}
+
+    <a href="{{ path('app_moment_index') }}">Retours aux Moments</a>
+{% endblock %}

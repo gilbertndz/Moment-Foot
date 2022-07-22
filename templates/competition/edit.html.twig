@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Compétition{% endblock %}
+
+{% block body %}
+    <h1>Modifier la compétition</h1>
+
+    {{ include('competition/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_competition_index') }}">Retour aux compétitions</a>
+
+    {{ include('competition/_delete_form.html.twig') }}
+{% endblock %}

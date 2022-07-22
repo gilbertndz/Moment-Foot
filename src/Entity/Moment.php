@@ -40,6 +40,12 @@ class Moment
     #[ORM\Column(length: 400)]
     private ?string $link = null;
 
+    #[ORM\Column(length: 355, nullable: true)]
+    private ?string $photo = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $rating = null;
+
     public function __construct()
     {
         $this->player = new ArrayCollection();
@@ -167,6 +173,30 @@ class Moment
     public function setLink(string $link): self
     {
         $this->link = $link;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getRating(): ?float
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?float $rating): self
+    {
+        $this->rating = $rating;
 
         return $this;
     }

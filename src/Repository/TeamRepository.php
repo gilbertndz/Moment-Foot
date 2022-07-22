@@ -39,6 +39,16 @@ class TeamRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByType(string $type): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.type = :type')
+            ->setParameter('type', $type)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Team[] Returns an array of Team objects
 //     */

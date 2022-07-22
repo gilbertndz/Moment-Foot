@@ -31,10 +31,17 @@ class Player
     #[ORM\ManyToMany(targetEntity: Moment::class, mappedBy: 'player')]
     private Collection $moments;
 
+    #[ORM\Column(length: 355, nullable: true)]
+    private ?string $photo = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorite_players')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->team = new ArrayCollection();
         $this->moments = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,6 +131,45 @@ class Player
     {
         if ($this->moments->removeElement($moment)) {
             $moment->removePlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addFavoritePlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFavoritePlayer($this);
         }
 
         return $this;

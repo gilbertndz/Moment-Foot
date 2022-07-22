@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Stade{% endblock %}
+
+{% block body %}
+    <h1>Modifier le stade</h1>
+
+    {{ include('stadium/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_stadium_index') }}">Retour aux stades</a>
+
+    {{ include('stadium/_delete_form.html.twig') }}
+{% endblock %}

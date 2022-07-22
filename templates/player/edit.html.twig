@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Joueur{% endblock %}
+
+{% block body %}
+    <h1>Modifier le joueur</h1>
+
+    {{ include('player/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_player_index') }}">Retour aux joueurs</a>
+
+    {{ include('player/_delete_form.html.twig') }}
+{% endblock %}

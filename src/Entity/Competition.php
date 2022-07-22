@@ -24,9 +24,13 @@ class Competition
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
+    #[ORM\ManyToMany(targetEntity: Team::class, inversedBy: 'competitions')]
+    private Collection $teams;
+
     public function __construct()
     {
         $this->moments = new ArrayCollection();
+        $this->teams = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +88,30 @@ class Competition
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Team>
+     */
+    public function getTeams(): Collection
+    {
+        return $this->teams;
+    }
+
+    public function addTeam(Team $team): self
+    {
+        if (!$this->teams->contains($team)) {
+            $this->teams[] = $team;
+        }
+
+        return $this;
+    }
+
+    public function removeTeam(Team $team): self
+    {
+        $this->teams->removeElement($team);
 
         return $this;
     }

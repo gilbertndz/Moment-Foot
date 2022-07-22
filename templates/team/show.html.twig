@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipe{% endblock %}
+
+{% block body %}
+    <h1>{{team.name}}</h1>
+
+    <div class="card" style="width: 18rem; border:#333 solid 3px; border-radius: 10px;">
+  <img src="{{ team.logo }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ team.name }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Ville : {{ team.city }}</li>
+    <li class="list-group-item">Pays : {{ team.country }}</li>
+    <li class="list-group-item">Type : {{ team.type }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="{{ path('app_team_index') }}">Retour aux équipes</a>
+    <a href="{{ path('app_team_edit', {'id': team.id}) }}" class="card-link">Modifier</a>
+  </div>
+</div>
+
+    {{ include('team/_delete_form.html.twig') }}
+
+{% endblock %}
