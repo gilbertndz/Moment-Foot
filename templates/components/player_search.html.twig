@@ -1,0 +1,13 @@
+<div {{ attributes }} class="m-4">
+    <input
+        type="search"
+        name="query"
+        value="{{ query }}"
+        placeholder="Entrez le nom du joueur recherché"
+        data-model="debounce(50)|query"
+    >
+
+    {% for player in this.players %}
+        {{ component('player', {'id': player.id}) }}
+    {% endfor %}
+</div>

@@ -39,6 +39,20 @@ class PlayerRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByQuery(string $query): array
+    {
+        if (empty($query)) {
+            return [];
+        }
+
+        return $this->createQueryBuilder('p')
+            ->where('p.lastname LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Player[] Returns an array of Player objects
 //     */

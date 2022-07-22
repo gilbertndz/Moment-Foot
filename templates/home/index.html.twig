@@ -2,13 +2,16 @@
 
 {% block body %}
 
-    <h1>{{ message }}</h1>
-    
+    <br><h1>{{ message }}</h1><br><br>
+<h2> Les Meilleurs Moments </h2>
 <div class="container">
-  <div class="box fill">Get the element's background colour and store it.</div>
-  <div class="box fill">Set the element's background colour to transparent.</div>
-  <div class="box fill">Add a child element with the stored background colour.</div>
-  <div class="box fill">Animate in the child element, in any way you can imagine.</div>
+{% for moment in moments %}
+    {% if moment.rating >= 7 %}
+  <div class="box fill">
+  <a href="{{ path('app_moment_show', {'id': moment.id}) }}" class="card-link">Moment : {{moment.title}}</a>
+  </div>
+    {% endif %}
+{% endfor %}
 </div>
 
 {% endblock %}

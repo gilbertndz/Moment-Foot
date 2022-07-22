@@ -11,6 +11,13 @@ security:
                 property: email
     firewalls:
         secured_area:
+            lazy: true
+            custom_authenticator: App\Security\UserAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_login
+
         
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -26,10 +33,6 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
-
-            logout:
-                path: app_logout
-                target: app_home
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
